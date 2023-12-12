@@ -1,5 +1,5 @@
 from functools import reduce
-from game import Game
+from .game import Game
 
 class RawStateGenerator:
     __ordem__ = [Game.empty, Game.player1, Game.player2]
@@ -43,7 +43,8 @@ class RawStateGenerator:
 
 
 class StateGenerator:
-    def __init__(self):
+    def __init__(self, player):
+        self.__currentPLayer__ = player
         self.__game__ = Game()
         self.__raw_generator__ = iter(RawStateGenerator())
         pass
@@ -53,24 +54,24 @@ class StateGenerator:
 
     def __next__(self):
 
+        validation = 0 if self.__currentPLayer__ == Game.player1 else 1
+        game = self.__game__
+
         while True:
             state = self.__raw_generator__.__next__()
-            self.__game__.set_state(state)
+            game.set_state(state)
 
-            if self.__game__.draw():
+            # if the state represents a finished game ignore
+            if game.finished():
                 continue
 
-            # Se O tiver jogado mais q X ou X tiver jogador 2 mais q O, pula para o proximo estado
+            # Number of player1 vs player2 moves on the board
             aggr = sum([1 if x == Game.player1 else -1 if x == Game.player2 else 0 for x in state])
-            if aggr != 1:
+            # any time player1 make a move the board has to have equals amount of moves between p1 and p2 (aggr == 0)
+            # on player2 moves case player1 will have one more move than player2 (aggr == 1)
+            if aggr != validation:
                 continue
 
-            # se tiver mais de 1 vencedor, pula para o proximo estado
-            if self.__game__.qtd_winner() > 0:
-                continue
-
-            # if self.__game__.draw():
-            #     continue
 
             break
 

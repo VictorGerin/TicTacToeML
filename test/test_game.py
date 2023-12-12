@@ -1,6 +1,6 @@
 import unittest
 
-from ..TicTacToe.game import Game
+from TicTacToe.game import Game
 
 
 class TestGame(unittest.TestCase):
@@ -39,6 +39,21 @@ class TestGame(unittest.TestCase):
 
         self.assertTrue(jogo.draw())
         self.assertTrue(jogo.finished())
+    
+    def test_reset(self):
+        jogo = Game()
+
+        jogo.set_state([Game.player1, Game.player1, Game.player2,
+                        Game.player2, Game.player2, Game.player1,
+                        Game.player1, Game.player1, Game.player2])
+
+        self.assertTrue(jogo.draw())
+        self.assertTrue(jogo.finished())
+
+        jogo.reset()
+
+        self.assertEqual(jogo.__state__, [Game.empty for x in range(9)])
+
 
 
 if __name__ == '__main__':
