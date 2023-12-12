@@ -1,7 +1,7 @@
 # TicTacToeML
 
 
-## How lauch test
+## How to unittest
 ### linux
 \$ source .venv/bin/activate
 ### windows
