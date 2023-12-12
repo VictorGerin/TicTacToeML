@@ -34,10 +34,21 @@ class TestStateGenerator(unittest.TestCase):
 
         pass
 
-    def test_generator_equals(self):
+    def test_p2_states(self):
         p1_states = [x for x in StateGenerator(Game.player1)]
+
+        #Nenhum estado d p2 deve está contido em p1
         for p2_state in StateGenerator(Game.player2):
             self.assertFalse(p2_state in p1_states)
+            pass
+        pass
+
+    def test_p1_states(self):
+        p2_states = [x for x in StateGenerator(Game.player2)]
+
+        #Nenhum estado d p2 deve está contido em p1
+        for p1_state in StateGenerator(Game.player1):
+            self.assertFalse(p1_state in p2_states)
             pass
         pass
 
