@@ -1,6 +1,6 @@
 import unittest
 
-from game import Game
+from ..TicTacToe.game import Game
 
 
 class TestGame(unittest.TestCase):
