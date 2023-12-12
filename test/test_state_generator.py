@@ -35,7 +35,7 @@ class TestStateGenerator(unittest.TestCase):
         pass
 
     def test_p2_states(self):
-        p1_states = [x for x in StateGenerator(Game.player1)]
+        p1_states = [x.copy() for x in StateGenerator(Game.player1)]
 
         #Nenhum estado d p2 deve está contido em p1
         for p2_state in StateGenerator(Game.player2):
@@ -44,7 +44,7 @@ class TestStateGenerator(unittest.TestCase):
         pass
 
     def test_p1_states(self):
-        p2_states = [x for x in StateGenerator(Game.player2)]
+        p2_states = [x.copy() for x in StateGenerator(Game.player2)]
 
         #Nenhum estado d p2 deve está contido em p1
         for p1_state in StateGenerator(Game.player1):
