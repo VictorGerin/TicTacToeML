@@ -11,7 +11,8 @@ class TestStateGenerator(unittest.TestCase):
         count = 0
         for x in RawStateGenerator():
             count += 1
-        self.assertEqual(count, 19683)
+        """for each slot in the state has 3 options since there is 9 slots the amount of combinations is 3^9"""
+        self.assertEqual(count, 3 ** 9)
 
         pass
 

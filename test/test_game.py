@@ -54,7 +54,3 @@ class TestGame(unittest.TestCase):
 
         self.assertEqual(jogo.__state__, [Game.empty for x in range(9)])
 
-
-
-if __name__ == '__main__':
-    unittest.main()

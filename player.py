@@ -2,6 +2,7 @@ import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'  # or any {'0', '1', '2'}
 
 from TicTacToe.player import Player
+import tensorflow_decision_forests
 import tensorflow as tf
 import logging
 tf.get_logger().setLevel(logging.NOTSET)
